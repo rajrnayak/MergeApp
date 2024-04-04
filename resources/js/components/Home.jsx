@@ -1,155 +1,92 @@
 import Card from "./card/Card";
 
-// export function HeaderLeft() {
-//     return (
-//         <>
-//             <span style={{ width: "100px", fontSize: "18px" }}>
-//                 <b>title</b>
-//             </span>
-//         </>
-//     );
-// }
-
-// export function HeaderRight() {
-//     return (
-//         <>
-//             <button
-//                 type="button"
-//                 className="btn btn-outline-dark position-relative"
-//             >
-//                 header button
-//             </button>
-//         </>
-//     );
-// }
-
-// export function FooterLeft() {
-//     return (
-//         <>
-//             <div className="buttons">
-//                 <div
-//                     className="btn-group"
-//                     role="group"
-//                     aria-label="Basic example"
-//                 >
-//                     <button type="button" className="btn btn-outline-primary">
-//                         Submit
-//                     </button>
-//                     <button type="button" className="btn btn-outline-danger">
-//                         Cancel
-//                     </button>
-//                 </div>
-//                 <button type="button" className="btn btn-outline-info ms-2">
-//                     Show
-//                 </button>
-//             </div>
-//         </>
-//     );
-// }
-
-// export function FooterRight() {
-//     return (
-//         <>
-//             <ul className="pagination m-0 p-0">
-//                 <li className="page-item">
-//                     <a className="page-link" href="#">
-//                         Previous
-//                     </a>
-//                 </li>
-//                 <li className="page-item">
-//                     <a className="page-link" href="#">
-//                         1
-//                     </a>
-//                 </li>
-//                 <li className="page-item">
-//                     <a className="page-link" href="#">
-//                         2
-//                     </a>
-//                 </li>
-//                 <li className="page-item">
-//                     <a className="page-link" href="#">
-//                         3
-//                     </a>
-//                 </li>
-//                 <li className="page-item">
-//                     <a className="page-link" href="#">
-//                         Next
-//                     </a>
-//                 </li>
-//             </ul>
-//         </>
-//     );
-// }
-
-function Home() {
-    const header_left = (
-        <span style={{ width: "100px", fontSize: "18px" }}>
-            <b>Home</b>
-        </span>
+function HeaderLeft() {
+    return (
+        <>
+            <span style={{ width: "100px", fontSize: "28px" }}>Home</span>
+        </>
     );
+}
 
-    const header_right = (
-        <button
-            type="button"
-            className="btn btn-outline-dark position-relative"
-        >
-            Home button
-        </button>
+function HeaderRight() {
+    return (
+        <>
+            <button
+                type="button"
+                className="btn btn-outline-dark position-relative"
+            >
+                Home Process
+            </button>
+        </>
     );
+}
 
-    const footer_left = (
-        <div className="buttons">
-            <div className="btn-group" role="group" aria-label="Basic example">
-                <button type="button" className="btn btn-outline-primary">
-                    Submit
-                </button>
-                <button type="button" className="btn btn-outline-danger">
-                    Cancel
+function FooterLeft() {
+    return (
+        <>
+            <div className="buttons">
+                <div
+                    className="btn-group p-0 m-2"
+                    role="group"
+                    aria-label="Basic example"
+                >
+                    <button type="button" className="btn btn-outline-primary">
+                        Submit
+                    </button>
+                    <button type="button" className="btn btn-outline-danger">
+                        Cancel
+                    </button>
+                </div>
+                <button type="button" className="btn btn-outline-info ms-2">
+                    Show
                 </button>
             </div>
-            <button type="button" className="btn btn-outline-info ms-2">
-                Show
-            </button>
-        </div>
+        </>
     );
+}
 
-    const footer_right = (
-        <ul className="pagination m-0 p-0">
-            <li className="page-item">
-                <a className="page-link" href="#">
-                    Previous
-                </a>
-            </li>
-            <li className="page-item">
-                <a className="page-link" href="#">
-                    1
-                </a>
-            </li>
-            <li className="page-item">
-                <a className="page-link" href="#">
-                    2
-                </a>
-            </li>
-            <li className="page-item">
-                <a className="page-link" href="#">
-                    3
-                </a>
-            </li>
-            <li className="page-item">
-                <a className="page-link" href="#">
-                    Next
-                </a>
-            </li>
-        </ul>
+function FooterRight() {
+    return (
+        <>
+            <ul className="pagination m-0 p-0">
+                <li className="page-item">
+                    <a className="page-link" href="#">
+                        Previous
+                    </a>
+                </li>
+                <li className="page-item">
+                    <a className="page-link" href="#">
+                        1
+                    </a>
+                </li>
+                <li className="page-item">
+                    <a className="page-link" href="#">
+                        2
+                    </a>
+                </li>
+                <li className="page-item">
+                    <a className="page-link" href="#">
+                        3
+                    </a>
+                </li>
+                <li className="page-item">
+                    <a className="page-link" href="#">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </>
     );
+}
 
+function Home() {
     return (
         <>
             <Card
-                header_left={header_left}
-                header_right={header_right}
-                footer_left={footer_left}
-                footer_right={footer_right}
+                header_left={<HeaderLeft />}
+                header_right={<HeaderRight />}
+                footer_left={<FooterLeft />}
+                footer_right={<FooterRight />}
             >
                 <div className="d-flex justify-content-center">
                     <table className="table">

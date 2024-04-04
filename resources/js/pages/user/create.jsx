@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 const object = {
@@ -11,18 +12,27 @@ function Create() {
     const { state } = useLocation();
     let navigator = useNavigate();
     const [user, setUser] = useState(state == undefined ? object : state);
+
     function changeUserDetail(e) {
         setUser({
             ...user,
             [e.target.name]: e.target.value,
         });
     }
-    function saveData(user) {
+    function saveData() {
         if (user.id == null) {
             axios
                 .post("http://mergeapp.test/user/store-or-update", user)
                 .then(function () {
                     navigator("/user");
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Data successfully entered.",
+                        icon: "success",
+                        width: "400px",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -35,12 +45,21 @@ function Create() {
                 )
                 .then(function () {
                     navigator("/user");
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Data successfully updated.",
+                        icon: "success",
+                        width: "400px",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
     }
+
     return (
         <>
             <div className="container">
@@ -48,7 +67,7 @@ function Create() {
                     method="POST"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        saveData(user);
+                        saveData();
                     }}
                 >
                     <h1>User</h1>
@@ -83,7 +102,7 @@ function Create() {
                                         className="form-select form-select-lg mb-3"
                                         aria-label="Large select example"
                                     >
-                                        <option value="">
+                                        <option value="" disabled>
                                             Open this select menu
                                         </option>
                                         <option value="1">Admin</option>
