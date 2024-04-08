@@ -1,9 +1,10 @@
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Card from "../../components/card/Card";
+import Card from "../../components/Card";
 function Index() {
     const [users, setUsers] = useState([]);
+    let selected_users = [];
     useEffect(() => {
         getUsers();
     }, []);
@@ -22,6 +23,14 @@ function Index() {
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    function showSelectedUsers() {
+        users.map((user) => {
+            if (user.is_checked) {
+                selected_users.push(user);
+            }
+        });
     }
 
     function destroyUser(id) {
@@ -47,7 +56,7 @@ function Index() {
                     axios
                         .get("http://mergeapp.test/user/destroy/" + id)
                         .then(function () {
-                            showUsers();
+                            getUsers();
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -141,9 +150,6 @@ function Index() {
                                     </td>
                                     <th scope="row" className="col-1">
                                         {index + 1}
-                                        {user.is_checked
-                                            ? "checked"
-                                            : "not checked"}
                                     </th>
                                     <td className="col-2">{user.user_name}</td>
                                     <td>{user.email}</td>
@@ -191,36 +197,40 @@ function Index() {
             </Card>
         </>
     );
-}
 
-function HeaderLeft() {
-    return (
-        <>
-            <span style={{ width: "100px", fontSize: "28px" }}>User</span>
-        </>
-    );
-}
+    function HeaderLeft() {
+        return (
+            <>
+                <span style={{ width: "100px", fontSize: "28px" }}>User</span>
+            </>
+        );
+    }
 
-function HeaderRight() {
-    return (
-        <>
-            <Link className="nav-link" to="/user/create">
-                <button type="button" className="btn btn-outline-dark">
-                    Add User
+    function HeaderRight() {
+        return (
+            <>
+                <Link className="nav-link" to="/user/create">
+                    <button type="button" className="btn btn-outline-dark">
+                        Add User
+                    </button>
+                </Link>
+            </>
+        );
+    }
+
+    function FooterLeft() {
+        return (
+            <>
+                <button
+                    type="button"
+                    className="btn btn-outline-dark"
+                    onClick={showSelectedUsers}
+                >
+                    Show Selected Users
                 </button>
-            </Link>
-        </>
-    );
-}
-
-function FooterLeft() {
-    return (
-        <>
-            <button type="button" className="btn btn-outline-dark">
-                Show Selected Users
-            </button>
-        </>
-    );
+            </>
+        );
+    }
 }
 
 export default Index;
